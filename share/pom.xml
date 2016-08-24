@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.axelfaust.alfresco</groupId>
+        <artifactId>de.axelfaust.alfresco.examples.patching</artifactId>
+        <version>0.0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>de.axelfaust.alfresco.examples.patching.share</artifactId>
+    <name>Alfresco Patching Examples - Share Module</name>
+    
+    <packaging>amp</packaging>
+
+    <properties>
+        <alfresco.client.war>share</alfresco.client.war>
+        <maven.tomcat.port>8081</maven.tomcat.port>
+        <alfresco.repo.url>http://localhost:8080/alfresco</alfresco.repo.url>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <version>${alfresco.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
