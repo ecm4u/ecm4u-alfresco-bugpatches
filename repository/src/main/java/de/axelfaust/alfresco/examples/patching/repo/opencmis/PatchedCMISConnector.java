@@ -62,7 +62,7 @@ public class PatchedCMISConnector extends CMISConnector
                 final Map<String, PropertyData<?>> map = this.userProvidedProperties.get();
 
                 // check for special bug case: property not provided by user, defined by secondary type and now attempted to be set to null
-                if (!map.containsKey(propertyId) && value == null && type.getBaseTypeId() == BaseTypeId.CMIS_SECONDARY)
+                if ((map == null || !map.containsKey(propertyId)) && value == null && type.getBaseTypeId() == BaseTypeId.CMIS_SECONDARY)
                 {
                     final PropertyDefinitionWrapper propDef = type.getPropertyById(propertyId);
 
