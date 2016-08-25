@@ -1,6 +1,6 @@
 # ecm4u Alfresco Bug Patches
 
-This module contains a collection of bug fixes for Alfrexco, both the
+This module contains a collection of bug fixes for Alfresco, both the
 repository and Share.
 
 ## Build
