@@ -1,3 +1,5 @@
+[![Travis build status](https://api.travis-ci.org/ecm4u/ecm4u-alfresco-bugpatches.svg?branch=master)](https://travis-ci.org/ecm4u/ecm4u-alfresco-bugpatches)
+
 # ecm4u Alfresco Bug Patches
 
 This module contains a collection of bug fixes for Alfresco, both the
