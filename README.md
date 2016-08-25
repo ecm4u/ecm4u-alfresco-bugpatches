@@ -26,6 +26,7 @@ Alfresco installation, copy `ecm4u-bugpatches-share-3.0-SNAPSHOT.amp` to
 ## Included Patches
 
 * Enable controls of transient fields to be rendered in Sets (patches https://issues.alfresco.com/jira/browse/ACE-5441)
+* Make a QuickShare document available even if it is in a different tenant than the requesting user.
 
 ## License
 
