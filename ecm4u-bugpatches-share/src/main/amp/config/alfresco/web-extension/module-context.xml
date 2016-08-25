@@ -5,7 +5,7 @@
 
     <bean class="de.ecm4u.alfresco.patching.repo.spring.ImplementationClassReplacingBeanFactoryPostProcessor">
         <property name="targetBeanName" value="webscript.org.alfresco.components.form.form.get" />
-        <property name="active" value="${ecm4u.patches.share.fixed.FormUIGet.enabled}" />
+        <property name="active" value="true" />
         <property name="originalClassName" value="org.alfresco.web.scripts.forms.FormUIGet" />
         <property name="replacementClassName" value="de.ecm4u.alfresco.bugpatches.org.alfresco.web.scripts.forms.FormUIGet" />
     </bean>

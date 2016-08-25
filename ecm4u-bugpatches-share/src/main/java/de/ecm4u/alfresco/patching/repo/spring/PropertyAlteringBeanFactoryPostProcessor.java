@@ -2,6 +2,8 @@ package de.ecm4u.alfresco.patching.repo.spring;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
@@ -18,9 +20,12 @@ import org.springframework.beans.factory.support.ManagedList;
  * conflict with custom Spring configuration.
  *
  * @author Axel Faust
+ * @author Lutz Horn
  * @since 3.0
  */
 public class PropertyAlteringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
+    private static final Log LOGGER = LogFactory.getLog(PropertyAlteringBeanFactoryPostProcessor.class);
 
     protected String targetBeanName;
 
@@ -154,7 +159,7 @@ public class PropertyAlteringBeanFactoryPostProcessor implements BeanFactoryPost
                     if (this.values != null) {
                         valuesToAdd = this.values;
                     } else {
-                        valuesToAdd = new ArrayList<Object>();
+                        valuesToAdd = new ArrayList<>();
                         for (final String beanReferenceName : this.beanReferenceNames) {
                             valuesToAdd.add(new RuntimeBeanReference(beanReferenceName));
                         }

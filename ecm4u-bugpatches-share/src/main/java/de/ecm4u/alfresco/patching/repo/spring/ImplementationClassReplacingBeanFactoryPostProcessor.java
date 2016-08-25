@@ -1,5 +1,7 @@
 package de.ecm4u.alfresco.patching.repo.spring;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -11,9 +13,12 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * configuration.
  *
  * @author Axel Faust
+ * @author Lutz Horn
  * @since 3.0
  */
 public class ImplementationClassReplacingBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
+    private static final Log LOGGER = LogFactory.getLog(ImplementationClassReplacingBeanFactoryPostProcessor.class);
 
     protected String originalClassName;
 
@@ -56,6 +61,11 @@ public class ImplementationClassReplacingBeanFactoryPostProcessor implements Bea
      */
     @Override
     public void postProcessBeanFactory(final ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        if (LOGGER.isInfoEnabled()) {
+            String msg = String.format("postProcessBeanFactory: active=%s, targetBeanName=%s, originalClassName=%s, replacementClassName=%s",
+                    active, targetBeanName, originalClassName, replacementClassName);
+            LOGGER.info(msg);
+        }
         if (this.active && this.targetBeanName != null && this.replacementClassName != null) {
             final BeanDefinition beanDefinition = beanFactory.getBeanDefinition(this.targetBeanName);
             if (beanDefinition != null
