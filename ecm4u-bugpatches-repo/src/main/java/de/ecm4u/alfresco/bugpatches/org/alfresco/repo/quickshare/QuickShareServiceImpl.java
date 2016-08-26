@@ -3,12 +3,8 @@
  * Alfresco Repository
  * %%
  * Copyright (C) 2005 - 2016 Alfresco Software Limited
- * %%
- * This file is part of the Alfresco software.
- * If the software was purchased under a paid Alfresco license, the terms of
- * the paid license agreement will prevail.  Otherwise, the software is
- * provided under the following open source license terms:
- *
+ * Copyright (C) 2016 Lutz Horn and Axel Faust
+ * %% *
  * Alfresco is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -25,6 +21,7 @@
  */
 package de.ecm4u.alfresco.bugpatches.org.alfresco.repo.quickshare;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,8 +37,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- *
+ * Fixes a bug when a QuickShare is used in Multi Tenant setup.
+ * 
+ * @see https://github.com/ecm4u/ecm4u-alfresco-bugpatches/issues/2
  * @author Lutz Horn
+ * @author Axel Faust
  * @since 3.0
  */
 public class QuickShareServiceImpl extends org.alfresco.repo.quickshare.QuickShareServiceImpl
@@ -78,7 +78,7 @@ public class QuickShareServiceImpl extends org.alfresco.repo.quickshare.QuickSha
             sp.setQuery(query);
             sp.addStore(StoreRef.STORE_REF_WORKSPACE_SPACESSTORE);
 
-            List<NodeRef> nodeRefs = null;
+            List<NodeRef> nodeRefs = new ArrayList<>();
             ResultSet results = null;
             try
             {
@@ -106,7 +106,7 @@ public class QuickShareServiceImpl extends org.alfresco.repo.quickshare.QuickSha
             // note: relies on tenant-specific (ie. mangled) nodeRef
             final String tenantDomain = this.tenantService.getDomain(nodeRef.getStoreRef().getIdentifier());
 
-            result = new Pair<String, NodeRef>(tenantDomain, this.tenantService.getBaseName(nodeRef));
+            result = new Pair<>(tenantDomain, this.tenantService.getBaseName(nodeRef));
         }
 
         result.setSecond(this.unmangleNodeRef(result.getSecond()));
