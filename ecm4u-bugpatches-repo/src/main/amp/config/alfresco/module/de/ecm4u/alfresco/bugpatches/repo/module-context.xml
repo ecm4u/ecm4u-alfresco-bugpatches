@@ -9,4 +9,12 @@
         <property name="originalClassName" value="org.alfresco.repo.quickshare.QuickShareServiceImpl" />
         <property name="replacementClassName" value="de.ecm4u.alfresco.bugpatches.org.alfresco.repo.quickshare.QuickShareServiceImpl" />
     </bean>
+
+    <bean class="de.ecm4u.alfresco.patching.repo.spring.ImplementationClassReplacingBeanFactoryPostProcessor">
+        <property name="targetBeanName" value="webscript.org.alfresco.slingshot.datalists.list.get" />
+        <property name="active" value="${ecm4u.patches.repo.fixed.QuickShareTenant.enabled}" />
+        <property name="originalClassName" value="org.alfresco.repo.web.scripts.datalist.DataListDownloadWebScript" />
+        <property name="replacementClassName" value="de.ecm4u.alfresco.bugpatches.org.alfresco.repo.quickshare.QuickShareServiceImpl" />
+    </bean>
+
 </beans>

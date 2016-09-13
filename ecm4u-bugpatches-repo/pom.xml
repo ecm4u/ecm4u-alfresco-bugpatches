@@ -41,6 +41,12 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>alfresco-share-services</artifactId>
+            <version>${alfresco.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
